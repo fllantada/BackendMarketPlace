@@ -1,0 +1,13 @@
+extends ../layout/home.pug
+block content
+    form(action='/api/productos', method='POST')
+        p Crear Producto
+            p Nombre
+                input(type='text', name='title')
+        p Precio
+            input(type='text', name='price')
+        p Thumbnail
+            input(type='text', name='thumbnail')
+
+        button(type='submit') Agregar Producto
+               

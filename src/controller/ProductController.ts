@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import ProductApp from "../app/ProductApp";
 
 //Value Object
 
@@ -20,40 +21,33 @@ const testProduct: Product = {
 
 //App
 
-class ProductApiClass {
-  private products: Product[] = [testProduct];
-
-  constructor() {}
-
+class ProductController {
   getAll(req: Request, res: Response): void {
-    res.json({ data: this.products });
+    const products = ProductApp.getAll();
+    res.send(products);
   }
 
   getById(req: Request, res: Response): void {
     const { id } = req.params;
-    const product = this.products.find((p) => p.id === id);
+    const product = ProductApp.getById(id);
     if (product) {
       res.json({ data: product });
     } else {
       res.json({ error: "Producto no encontrado" });
     }
   }
+
   create(req: Request, res: Response): void {
     const product = req.body;
-    console.log(req.body);
-    console.log("product es: ", product);
-    product.id = (this.products.length + 1).toString();
-    this.products.push(product);
+    ProductApp.create(product);
     res.redirect("/");
   }
+
   edit(req: Request, res: Response): void {
     const { id } = req.params;
     const newProduct = req.body;
-    const product = this.products.find((p) => p.id === id);
+    const product = ProductApp.edit(id, newProduct);
     if (product) {
-      product.title = newProduct.title || product.title;
-      product.price = newProduct.price || product.price;
-      product.thumbnail = newProduct.thumbnail || product.thumbnail;
       res.json({ data: product });
     } else {
       res.json({ error: "Producto no encontrado" });
@@ -62,9 +56,8 @@ class ProductApiClass {
 
   delete(req: Request, res: Response): void {
     const { id } = req.params;
-    const product = this.products.find((p) => p.id === id);
-    if (product) {
-      this.products = this.products.filter((p) => p.id !== id);
+    const productDeleteResult = ProductApp.delete(id);
+    if (productDeleteResult) {
       res.json({ msg: "Producto eliminado", id });
     } else {
       res.json({ error: "Producto no encontrado" });
@@ -72,6 +65,6 @@ class ProductApiClass {
   }
 }
 
-const productApi = new ProductApiClass();
+const productsController = new ProductController();
 
-export default productApi;
+export default productsController;

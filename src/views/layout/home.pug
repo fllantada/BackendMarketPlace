@@ -1,31 +1,21 @@
 html 
     head 
-        title Tp5 Coder
+        title=title
         link(rel="stylesheet" href="./css/style.css")
     body 
         h1 TP 5 Francisco LLantada
-        form(action='/api/productos', method='POST')
-            p Crear Producto
-                p Nombre
-                    input(type='text', name='title')
-                p Precio
-                    input(type='text', name='price')
-                p Thumbnail
-                    input(type='text', name='thumbnail')
-
-                button(type='submit') Agregar Producto
-               
 
 
 
         button 
-            a(href="./api/productos") Ir a Productos
+            a(href="./productos") Ir a Productos
         button 
-            a(href="./api/productos") Ir a Formulario
+            a(href="./formulario") Ir a Formulario
 
         div()
             h2 Que por que PUG?
             p Por que es lo q mas se parece a un trabajo con Docker o gihub o basicamente todo el mundo del backend usa YML
+        block content
 
 
         script(src="./js/script.js")

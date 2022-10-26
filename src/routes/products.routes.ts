@@ -1,14 +1,14 @@
 import { Router } from "express";
-import productApi from "../controller/ProductApiClass";
+import productsController from "../controller/ProductController";
 
 const productos = Router();
 
-productos.get("/", productApi.getAll.bind(productApi));
-productos.get("/:id", productApi.getById.bind(productApi));
+productos.get("/", productsController.getAll.bind(productsController));
+productos.get("/:id", productsController.getById.bind(productsController));
 
-productos.post("/", productApi.create.bind(productApi));
-productos.put("/:id", productApi.edit.bind(productApi));
-productos.delete("/:id", productApi.delete.bind(productApi));
+productos.post("/", productsController.create.bind(productsController));
+productos.put("/:id", productsController.edit.bind(productsController));
+productos.delete("/:id", productsController.delete.bind(productsController));
 
 export default productos;
 
