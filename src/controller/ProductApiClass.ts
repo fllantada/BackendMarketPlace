@@ -44,7 +44,7 @@ class ProductApiClass {
     console.log("product es: ", product);
     product.id = (this.products.length + 1).toString();
     this.products.push(product);
-    res.json({ data: product });
+    res.redirect("/");
   }
   edit(req: Request, res: Response): void {
     const { id } = req.params;
