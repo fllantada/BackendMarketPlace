@@ -42,7 +42,7 @@ class ProductApiClass {
     const product = req.body;
     console.log(req.body);
     console.log("product es: ", product);
-    product.id = this.products.length + 1;
+    product.id = (this.products.length + 1).toString();
     this.products.push(product);
     res.json({ data: product });
   }
