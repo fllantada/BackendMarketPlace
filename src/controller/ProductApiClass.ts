@@ -40,6 +40,8 @@ class ProductApiClass {
   }
   create(req: Request, res: Response): void {
     const product = req.body;
+    console.log(req.body);
+    console.log("product es: ", product);
     product.id = this.products.length + 1;
     this.products.push(product);
     res.json({ data: product });

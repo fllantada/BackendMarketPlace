@@ -4,8 +4,8 @@ import mainRouter from "../routes";
 import path from "path";
 
 const app: Express = express();
-
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const publicPath = path.resolve(__dirname, "../public");
 
