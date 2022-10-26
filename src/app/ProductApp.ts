@@ -15,7 +15,8 @@ const testProduct: Product = {
   id: "1",
   title: "test",
   price: 100,
-  thumbnail: "test",
+  thumbnail:
+    "https://cdn2.iconfinder.com/data/icons/social-media-2189/48/22-Yahoo-512.png",
 };
 
 //App
