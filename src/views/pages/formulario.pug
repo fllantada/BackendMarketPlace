@@ -1,12 +1,12 @@
 extends ../layout/home.pug
 block content
     form(action='/api/productos', method='POST')
-        p Crear Producto
-            p Nombre
+        p(class="tituloformulario") Crear Producto
+        p(class="formulario") Nombre
                 input(type='text', name='title')
-        p Precio
+        p(class="formulario") Precio
             input(type='text', name='price')
-        p Thumbnail
+        p(class="formulario") Thumbnail
             input(type='text', name='thumbnail')
 
         button(type='submit') Agregar Producto

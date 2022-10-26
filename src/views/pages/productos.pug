@@ -1,3 +1,9 @@
 extends ../layout/home.pug
 block content
-    p Estoy en la lista de productos
+    ul 
+        each val in productos
+            div(class="card")
+                h2="Nombre: "+val.title
+                h2="Precio: "+val.price
+                h2="Url: "+val.thumbnail
+                h2="Id:"+val.id

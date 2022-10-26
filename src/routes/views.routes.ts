@@ -10,7 +10,8 @@ views.get("/", (req, res) => {
 views.get("/productos", (req, res) => {
   const products = ProductApp.getAll();
   console.log(products);
-  res.render("./pages/productos.pug", { products, title: "Productos" });
+  const test = [1, 2, 4, 5, 6, 32];
+  res.render("./pages/productos.pug", { productos: products });
 });
 
 views.get("/formulario", (req, res) => {
