@@ -1,13 +1,17 @@
 extends ../layout/home.pug
 block content
     form(action='/api/productos', method='POST')
-        p(class="tituloformulario") Crear Producto
-        p(class="formulario") Nombre
-                input(type='text', name='title')
-        p(class="formulario") Precio
-            input(type='text', name='price')
-        p(class="formulario") Thumbnail
-            input(type='text', name='thumbnail')
+        div(class="form-group")
+            label(for="titulo") Título
+            input(type="text", class="form-control", id="titulo", name="title", placeholder="Ingrese titulo")        
+        div(class="form-group")
+            label(for="precio") Precio
+            input(type="text", class="form-control", id="precio", name="price", placeholder="Ingrese precio")
+        div(class="form-group")
+            label(for="foto") Foto
+            input(type="text", class="form-control", id="foto", name="thumbnail", placeholder="Ingrese la foto")
+        button(type="submit", class="btn btn-primary") Enviar
+        
 
-        button(type='submit') Agregar Producto
+    
                
