@@ -50,7 +50,8 @@ input{
 button{
     font-size: 15px;
     font-weight: 300;
-    margin: 10;
+    margin: 10 0;
+    
     
 }
 .formulario{
