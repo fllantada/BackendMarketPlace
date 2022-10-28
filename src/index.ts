@@ -1,8 +1,12 @@
+import { ChatSetup } from "./services/socket";
 import app from "./services/server";
 
 const PORT = process.env.PORT || 8080;
+const chatSetup = new ChatSetup(app);
+const server = chatSetup.getServer();
+const io = chatSetup.getIo();
 
-const server = app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(
     `Servidor Francisco Javier Llantada funcionando en http://localhost:${PORT}  `
   );
