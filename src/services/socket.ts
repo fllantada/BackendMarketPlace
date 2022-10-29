@@ -1,29 +1,21 @@
-import express from "express";
-import * as http from "http";
+import { Server as httpServer } from "http";
 import { Server as ioServer } from "socket.io";
 
 type Message = {};
 
-export class ChatSetup {
-  private server: http.Server;
+export class Socket {
   private io: ioServer;
 
-  constructor(app: express.Application) {
-    this.createServer(app);
-    this.connectIoToServer();
+  constructor(app: httpServer) {
+    this.connectIoToServer(app);
     this.handleEvents();
   }
 
-  private createServer(app: express.Application): void {
-    this.server = http.createServer(app);
-  }
-
-  private connectIoToServer(): void {
-    this.io = new ioServer(this.server, {});
-    this.io.listen(this.server);
+  private connectIoToServer(app: httpServer): void {
+    this.io = new ioServer(app, {});
   }
   private handleEvents(): void {
-    this.io.on("connect", (socket: any) => {
+    this.io.on("connection", (socket: any) => {
       console.log("Connected client", socket.id);
 
       socket.on("message", (m: Message) => {
@@ -37,8 +29,5 @@ export class ChatSetup {
 
   public getIo(): ioServer {
     return this.io;
-  }
-  public getServer(): http.Server {
-    return this.server;
   }
 }

@@ -1,10 +1,8 @@
-import { ChatSetup } from "./services/socket";
-import app from "./services/server";
+import { Socket } from "./services/socket";
+import server from "./services/server";
 
 const PORT = process.env.PORT || 8080;
-const chatSetup = new ChatSetup(app);
-const server = chatSetup.getServer();
-const io = chatSetup.getIo();
+new Socket(server);
 
 server.listen(PORT, () => {
   console.log(

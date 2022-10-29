@@ -2,6 +2,7 @@ import express from "express";
 import { Express, Request, Response } from "express";
 import mainRouter from "../routes";
 import path from "path";
+import { createServer } from "http";
 
 const app: Express = express();
 app.use(express.json());
@@ -25,4 +26,4 @@ app.use(function (err: Error, req: Request, res: Response, next: Function) {
   res.status(500).send({ msg: "Se te rompio todo mira ->", err: err.message });
 });
 
-export default app;
+export default createServer(app);
