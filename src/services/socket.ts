@@ -1,6 +1,7 @@
 import { Server as httpServer } from "http";
 import { Server as ioServer } from "socket.io";
 import { Socket as socketType } from "socket.io";
+import productApp from "../app/ProductApp";
 
 type Message = {
   user: string;
@@ -26,17 +27,10 @@ export class SocketClass {
   }
   private handleEvents(): void {
     this.io.on("connection", (socket: socketType) => {
-      console.log("Connected client", socket.id);
+      console.log("Nuevo cliente conectado!");
+      socket.emit("allProducts", productApp.getAll());
 
-      socket.on("message", (m: Message) => {
-        console.log("New Message", m);
-      });
-
-      socket.on("disconnect", () => {
-        console.log("Client disconnected");
-      });
       socket.on("login", (data) => {
-        console.log(data);
         this.users.push({ id: socket.id, email: data });
         socket.emit("loggedUser", data);
         socket.emit("newMessage", [
@@ -46,15 +40,20 @@ export class SocketClass {
           },
         ]);
       });
+      socket.on("newProduct", (data) => {
+        productApp.create(data);
+        this.io.emit("newProduct", productApp.getAll);
+      });
 
       socket.on("chatMessage", (data: string) => {
         console.log(data);
-        //esto da undefined undefined
         const message = this.createMessage(socket.id, data);
-
         this.messages.push(message);
-
         this.io.emit("newMessage", this.messages);
+      });
+
+      socket.on("disconnect", () => {
+        this.users = this.users.filter((user) => user.id !== socket.id);
       });
     });
   }

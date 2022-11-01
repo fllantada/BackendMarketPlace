@@ -8,10 +8,4 @@ div(class="row")
                     th(scope="col") Precio
                     th(scope="col") Imagen   
             tbody(id="tbody")
-                each producto in productos
-                    tr(class="fila")
-                        td= producto.id
-                        td= producto.title
-                        td= producto.price
-                        td
-                            img(src=producto.thumbnail, alt=producto.title, width="10px" height="10px")
+                
