@@ -1,10 +1,12 @@
 import { Server as httpServer } from "http";
 import { Server as ioServer } from "socket.io";
 import { Socket as socketType } from "socket.io";
+import moment from "moment";
 import productApp from "../app/ProductApp";
 
 type Message = {
   user: string;
+  date: string;
   message: string;
 };
 type user = {
@@ -36,13 +38,18 @@ export class SocketClass {
         socket.emit("newMessage", [
           {
             user: "Admin",
+            date: moment().format("DD/MM/YYYY HH:mm:ss"),
             message: "Bienvenido al chat",
           },
         ]);
       });
-      socket.on("newProduct", (data) => {
+      socket.on("sendNewProduct", (data) => {
+        console.log("Desde new product me llego data: ", data);
         productApp.create(data);
-        this.io.emit("newProduct", productApp.getAll);
+        const products = productApp.getAll();
+        console.log(products);
+
+        this.io.emit("getNewProduct", products);
       });
 
       socket.on("chatMessage", (data: string) => {
@@ -62,11 +69,13 @@ export class SocketClass {
     if (user) {
       return {
         user: user?.email,
+        date: moment().format("DD/MM/YYYY HH:mm:ss"),
         message: data,
       };
     } else {
       return {
         user: "Anonimo",
+        date: moment().format("DD/MM/YYYY HH:mm:ss"),
         message: data,
       };
     }

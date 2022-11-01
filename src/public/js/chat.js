@@ -54,8 +54,8 @@ function outputMessage(message) {
   const div = document.createElement("div");
   div.classList.add("message");
   div.innerHTML = `
-  <p class="meta">${message.user} <span> ${message.time}</span></p>
-  <p class="text"> ${message.message} </p>`;
+  <p class="email-usuario">${message.user} <span class="fecha-mensaje"> [ ${message.date} ]</span></p>
+  <p class="texto-mensaje"> ${message.message} </p>`;
 
   messagesContainer.appendChild(div);
 }

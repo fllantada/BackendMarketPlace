@@ -9,13 +9,13 @@ addProductForm.addEventListener("submit", (e) => {
     thumbnail: e.target.thumbnail.value,
   };
   console.log(product);
-  socket.emit("newProduct", product);
+  socket.emit("sendNewProduct", product);
 });
 
-socket.on("newProduct", (data) => {
-  console.log("DESDE NEW PRODUCTS");
+socket.on("getNewProduct", (data) => {
+  console.log("DESDE Get PRODUCTS");
   console.log(data);
-  outputProduct(data[data.length - 1]);
+  if (data.length) outputProduct(data[data.length - 1]);
 });
 
 socket.on("allProducts", (data) => {

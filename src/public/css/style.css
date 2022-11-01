@@ -27,9 +27,42 @@ a {
 .hidden {
   display: none;
 }
+.login-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+.login-container input {
+  width: 250px;
+  height: 50px;
+  padding: 5px;
+  align-self: center;
+}
+.login-container button {
+  border: 1px solid black;
+  width: 100px;
+  height: 50px;
+  padding: 5px;
+  align-self: center;
+}
 .spaceReady {
   background-color: aquamarine;
 }
+.texto-mensaje {
+  font: italic;
+  color: green;
+}
+.email-usuario {
+  color: blue;
+  font-weight: bold;
+}
+.fecha-mensaje {
+  color: brown;
+  font-weight: regular;
+}
+
 p {
   display: flex;
   flex-direction: row;
