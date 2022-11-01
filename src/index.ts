@@ -1,8 +1,8 @@
-import { Socket } from "./services/socket";
+import { SocketClass } from "./services/socket";
 import server from "./services/server";
 
 const PORT = process.env.PORT || 8080;
-new Socket(server);
+new SocketClass(server);
 
 server.listen(PORT, () => {
   console.log(

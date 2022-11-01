@@ -1,0 +1,11 @@
+form(action='/api/productos', method='POST')
+        div(class="form-group")
+            label(for="titulo") Título
+            input(type="text", class="form-control", id="titulo", name="title", placeholder="Ingrese titulo")        
+        div(class="form-group")
+            label(for="precio") Precio
+            input(type="text", class="form-control", id="precio", name="price", placeholder="Ingrese precio")
+        div(class="form-group")
+            label(for="foto") Foto
+            input(type="text", class="form-control", id="foto", name="thumbnail", placeholder="Ingrese la foto")
+        button(type="submit", class="btn btn-secondary menu-btn") Enviar

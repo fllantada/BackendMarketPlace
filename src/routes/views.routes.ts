@@ -4,7 +4,8 @@ import ProductApp from "../app/ProductApp";
 const views = Router();
 
 views.get("/", (req, res) => {
-  res.render("./layout/home.pug");
+  const products = ProductApp.getAll();
+  res.render("./pages/homePage.pug", { title: "Home", productos: products });
 });
 
 views.get("/productos", (req, res) => {
@@ -16,7 +17,11 @@ views.get("/productos", (req, res) => {
 
 views.get("/formulario", (req, res) => {
   console.log("Entre en formularios");
-  res.render("./pages/formulario.pug", { title: "Formulario" });
+  const products = ProductApp.getAll();
+  res.render("./pages/formulario.pug", {
+    title: "Formulario",
+    productos: products,
+  });
 });
 
 export default views;
