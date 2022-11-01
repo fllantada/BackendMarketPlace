@@ -38,7 +38,6 @@ class ProductApp {
   }
 
   create(product: Product): void {
-    console.log("product es: ", product);
     product.id = (this.products.length + 1).toString();
     this.products.push(product);
   }

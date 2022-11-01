@@ -10,13 +10,12 @@ views.get("/", (req, res) => {
 
 views.get("/productos", (req, res) => {
   const products = ProductApp.getAll();
-  console.log(products);
+
   const test = [1, 2, 4, 5, 6, 32];
   res.render("./pages/productos.pug", { productos: products });
 });
 
 views.get("/formulario", (req, res) => {
-  console.log("Entre en formularios");
   const products = ProductApp.getAll();
   res.render("./pages/formulario.pug", {
     title: "Formulario",

@@ -29,7 +29,6 @@ export class SocketClass {
   }
   private handleEvents(): void {
     this.io.on("connection", (socket: socketType) => {
-      console.log("Nuevo cliente conectado!");
       socket.emit("allProducts", productApp.getAll());
 
       socket.on("login", (data) => {
@@ -44,7 +43,6 @@ export class SocketClass {
         ]);
       });
       socket.on("sendNewProduct", (data) => {
-        console.log("Desde new product me llego data: ", data);
         productApp.create(data);
         const products = productApp.getAll();
         console.log(products);
@@ -53,7 +51,6 @@ export class SocketClass {
       });
 
       socket.on("chatMessage", (data: string) => {
-        console.log(data);
         const message = this.createMessage(socket.id, data);
         this.messages.push(message);
         this.io.emit("newMessage", this.messages);
