@@ -1,9 +1,7 @@
 //Socket Conection
 const socket = io();
 socket.connect("http://localhost:8080", { reconnect: true });
-socket.on("connection", function () {
-  console.log("Conectado al servidor");
-});
+socket.on("connection", function () {});
 //get DOM elements
 const loginInputForm = document.getElementById("login");
 const mail = document.getElementById("mail");
@@ -20,7 +18,7 @@ chatContainer.classList.add("hidden");
 loginInputForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const username = mail.value;
-  console.log("Enviando Datos Usuario", username);
+
   socket.emit("login", mail.value);
   mail.value = "";
 });
@@ -29,12 +27,10 @@ loginInputForm.addEventListener("submit", (e) => {
 socket.on("loggedUser", (data) => {
   chatContainer.classList.remove("hidden");
   loginInputForm.classList.add("hidden");
-  console.log(data);
 });
 
 //New Message
 socket.on("newMessage", (data) => {
-  console.log(data);
   outputMessage(data[data.length - 1]);
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
   window.scrollTo(0, document.body.scrollHeight);
@@ -44,13 +40,12 @@ socket.on("newMessage", (data) => {
 chatInputForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const message = msg.value;
-  console.log("Enviando mensaje", message);
+
   socket.emit("chatMessage", message);
   msg.value = "";
 });
 
 function outputMessage(message) {
-  console.log("me llego un mensaje", message);
   const div = document.createElement("div");
   div.classList.add("message");
   div.innerHTML = `
@@ -75,6 +70,6 @@ function outputRoomName(room) {
 
 function outputUsers(users) {
   const arrayofUsers = users.map((aUser) => `<li>${aUser.username}</li>`);
-  console.log(arrayofUsers);
+
   usersList.innerHTML = arrayofUsers.join("");
 }
