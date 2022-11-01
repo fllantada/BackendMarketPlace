@@ -1,0 +1,14 @@
+#chat-container-id.chat-container
+  header.chat-header
+    h2
+       | Chat Usuarios    
+  main.chat-messages
+       
+  .chat-form-container
+    form#chat-form
+      input#msg(type='text' placeholder='Escribir mensaje' required='' autocomplete='off')
+      button.btn.btn-chat
+        i.fas.fa-paper-plane
+            |  Send
+script(src="./socket.io/socket.io.js")
+script(src="./js/chat.js")

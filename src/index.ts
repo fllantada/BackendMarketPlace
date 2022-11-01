@@ -1,8 +1,10 @@
-import app from "./services/server";
+import { SocketClass } from "./services/socket";
+import server from "./services/server";
 
 const PORT = process.env.PORT || 8080;
+new SocketClass(server);
 
-const server = app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(
     `Servidor Francisco Javier Llantada funcionando en http://localhost:${PORT}  `
   );

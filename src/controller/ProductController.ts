@@ -40,7 +40,7 @@ class ProductController {
   create(req: Request, res: Response): void {
     const product = req.body;
     ProductApp.create(product);
-    res.redirect("/productos");
+    res.redirect("/");
   }
 
   edit(req: Request, res: Response): void {
