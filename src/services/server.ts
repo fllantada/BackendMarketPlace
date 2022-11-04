@@ -3,10 +3,16 @@ import { Express, Request, Response } from "express";
 import mainRouter from "../routes";
 import path from "path";
 import { createServer } from "http";
+import User from "../auth/isAdmin";
 
 const app: Express = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//user Status for protected Routes
+
+User.setRoleType("User");
+User.setRoleType("Admin");
 
 // Static files
 

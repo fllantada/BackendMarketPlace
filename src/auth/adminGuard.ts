@@ -1,0 +1,44 @@
+import { NextFunction, Request, Response } from "express";
+import User from "./isAdmin";
+
+type protectedRoutesType = {
+  [key: string]: string[];
+};
+
+export default function adminGuard(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  console.log(req.path, req.method);
+
+  if (isProtected(removeParams(req.path), req.method)) {
+    if (User.isAdmin()) {
+      next();
+    } else {
+      res.status(403).json({
+        error: `No estas autorizado a ejecutar el metodo ${req.method} en la ruta ${req.path} te sugiero que te loguees  con un GET en /api/login)`,
+        PD: "No me mandes ni body ni nada con darle un ping te hago admin",
+      });
+    }
+  }
+
+  next();
+}
+
+function isProtected(route: string, method: string): boolean {
+  const protectedRoutes: protectedRoutesType = {
+    "/api/productos": ["POST", "PUT", "DELETE"],
+    "/api/carrito": ["GET", "POST", "PUT", "DELETE"],
+  };
+
+  return protectedRoutes[route].includes(method);
+}
+function removeParams(route: string): string {
+  const routeLength = route.split("/").length;
+  const routeWithoutParams = route
+    .split("/")
+    .slice(0, routeLength - 1)
+    .join("/");
+  return routeWithoutParams;
+}
