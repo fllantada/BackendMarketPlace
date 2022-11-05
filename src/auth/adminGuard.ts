@@ -16,7 +16,7 @@ export default function adminGuard(
     if (User.isAdmin()) {
       next();
     } else {
-      res.status(403).json({
+      return res.status(403).json({
         error: `No estas autorizado a ejecutar el metodo ${req.method} en la ruta ${req.path} te sugiero que te loguees  con un GET en /api/login)`,
         PD: "No me mandes ni body ni nada con darle un ping te hago admin",
       });
@@ -28,17 +28,30 @@ export default function adminGuard(
 
 function isProtected(route: string, method: string): boolean {
   const protectedRoutes: protectedRoutesType = {
-    "/api/productos": ["POST", "PUT", "DELETE"],
-    "/api/carrito": ["GET", "POST", "PUT", "DELETE"],
+    "/productos": ["GET", "POST", "PUT", "DELETE"],
+    "/carrito": ["GET", "POST", "PUT", "DELETE"],
   };
 
-  return protectedRoutes[route].includes(method);
+  console.log(protectedRoutes[route]);
+  console.log(route);
+
+  if (
+    protectedRoutes[route] &&
+    Array.isArray(protectedRoutes[route]) &&
+    protectedRoutes[route].includes(method)
+  ) {
+    return true;
+  } else return false;
 }
+
 function removeParams(route: string): string {
   const routeLength = route.split("/").length;
+
+  if (routeLength == 2) return route;
   const routeWithoutParams = route
     .split("/")
     .slice(0, routeLength - 1)
     .join("/");
+
   return routeWithoutParams;
 }

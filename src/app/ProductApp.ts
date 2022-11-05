@@ -1,4 +1,5 @@
-import { Request, Response } from "express";
+import IPersistenceRepository from "./IPersistenceRepository";
+import { FileSaver } from "./FileSaver";
 
 //Value Object
 
@@ -23,10 +24,14 @@ const testProduct: Product = {
 
 class ProductApp {
   private products: Product[] = [testProduct];
+  private repository: IPersistenceRepository;
 
-  constructor() {}
+  constructor(repository: IPersistenceRepository) {
+    this.repository = repository;
+  }
 
   getAll(): Product[] {
+    this.products = this.repository.getAll("products");
     return this.products;
   }
 
@@ -66,6 +71,6 @@ class ProductApp {
   }
 }
 
-const productApi = new ProductApp();
+const productApi = new ProductApp(new FileSaver());
 
 export default productApi;

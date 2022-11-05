@@ -11,7 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 
 //user Status for protected Routes
 
-User.setRoleType("User");
 User.setRoleType("Admin");
 
 // Static files
