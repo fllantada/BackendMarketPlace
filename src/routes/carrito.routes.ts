@@ -3,7 +3,6 @@ import { Router } from "express";
 const carrito = Router();
 
 carrito.get("/", (req, res) => {
-  console.log("Entre en get carrito");
   res.send("Get carrito");
 });
 carrito.get("/:id", (req, res) => {

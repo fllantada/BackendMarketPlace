@@ -23,24 +23,39 @@ const testProduct: Product = {
 
 class ProductController {
   getAll(req: Request, res: Response): void {
+    console.log("Inicio el controller getAll");
     const products = ProductApp.getAll();
-    res.send(products);
+    products
+      .then((products) => {
+        res.json(products);
+      })
+      .catch((err) => console.log(err));
   }
 
   getById(req: Request, res: Response): void {
+    console.log("Desde el controller id, id q me llega es", req.params.id);
     const { id } = req.params;
     const product = ProductApp.getById(id);
-    if (product) {
-      res.json({ data: product });
-    } else {
-      res.json({ error: "Producto no encontrado" });
-    }
+    product
+      .then((product) => {
+        if (product) {
+          res.json({ data: product });
+        } else {
+          res.json({ error: "Producto no encontrado" });
+        }
+      })
+      .catch((err) => console.log(err));
   }
 
   create(req: Request, res: Response): void {
-    const product = req.body;
-    ProductApp.create(product);
-    res.redirect("/");
+    const product: Product = req.body;
+
+    if (product.title && product.price && product.thumbnail) {
+      ProductApp.create(product);
+      res.json({ msg: "Producto creado correctamente", data: product });
+    } else {
+      res.json({ error: "faltan datos" });
+    }
   }
 
   edit(req: Request, res: Response): void {
