@@ -30,25 +30,34 @@ class ProductApp {
 
   constructor(repository: IPersistenceRepository) {
     this.repository = repository;
+    this.initialize();
+  }
+
+  async initialize(): Promise<void> {
+    const products = await this.repository.getAll();
+
+    console.log("products", products);
   }
 
   async getAll(): Promise<Product[]> {
-    console.log("Inicio getAll de Product APP");
     const products = await this.repository.getAll();
-    console.log("products desde getAll de Product APP", products);
 
     //empty file
 
-    if (!products || products.length === 0) {
-      console.log("OJO INGRESE A AGREGAR MOCK PRODUCTS");
+    /* if (!products || products.length === 0) {
+      console.log(
+        "OJO INGRESE A AGREGAR MOCK PRODUCTS por que products es:",
+        products
+      );
       this.addMockProducts(testProducts);
-    }
+    } */
+
     return products;
   }
 
   async getById(id: string): Promise<Product | undefined> {
     const product = (await this.repository.getById(id)) as Product;
-    console.log("Desde product App get by id, product es", product);
+
     if (product) {
       return product;
     }

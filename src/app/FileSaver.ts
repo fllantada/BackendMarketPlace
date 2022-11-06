@@ -19,16 +19,21 @@ export class FileSaver implements IPersistenceRepository {
     await this.createFile();
   }
   async getAll(): Promise<fileSaverObject[]> {
+    console.log("Inicie GET ALL");
     fs.readFile(this.path, "utf-8")
       .then((data) => {
+        console.log("Estoy en la primesa del read File");
         this.data = JSON.parse(data) as fileSaverObject[];
+        return this.data;
       })
       .catch((error) => {
         console.log(error);
       });
 
+    console.log("Estoy por retornar this.data", this.data);
     return this.data;
   }
+
   async getById(id: string): Promise<Object> {
     console.log("Desde fileSaver, id es", id);
     const data = (await this.getAll()) as fileSaverObject[];
