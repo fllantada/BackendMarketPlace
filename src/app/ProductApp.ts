@@ -1,6 +1,7 @@
 import IPersistenceRepository from "./Interfaces/IPersistenceRepository";
 import { FileSaver } from "./FileSaver";
 import { Product } from "./Interfaces/IProduct";
+import { v4 as uuidv4 } from "uuid";
 
 //App
 
@@ -9,7 +10,6 @@ class ProductApp {
 
   async getAll(): Promise<Product[]> {
     const products = this.repository.getAll();
-
     return products;
   }
 
@@ -22,8 +22,7 @@ class ProductApp {
   }
 
   create(product: Product): Product {
-    const products = this.repository.getAll();
-    product.id = (products.length + 1).toString();
+    product.id = uuidv4();
     product.timestamp = new Date();
     product.codigo = "codigo:" + product.id;
     this.repository.create(product);

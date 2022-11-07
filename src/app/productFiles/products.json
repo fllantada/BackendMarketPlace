@@ -1,13 +1,13 @@
 [
   {
-    "id": "1",
-    "nombre": "nombre Cambiado desde Postman 2",
-    "foto": "www.postman.com.ar/productocreado/test",
-    "codigo": "codigo:1",
-    "precio": "1000",
-    "stock": "5",
-    "descripcion": "Esta es la descripcion de un producto creado por PostMan",
-    "timestamp": "2022-11-07T15:33:34.551Z"
+    "nombre": "Producto Creado Postman N1",
+    "foto": "www.postman.com.ar/productocreado/test 2",
+    "precio": "850",
+    "stock": "3",
+    "descripcion": "Esta es la descripcion de un segundo producto creado por PostMan",
+    "id": "250347f1-56e3-4bdb-992a-8c9a70151ee6",
+    "timestamp": "2022-11-07T17:34:43.447Z",
+    "codigo": "codigo:250347f1-56e3-4bdb-992a-8c9a70151ee6"
   },
   {
     "nombre": "Producto Creado Postman N2",
@@ -15,18 +15,8 @@
     "precio": "850",
     "stock": "3",
     "descripcion": "Esta es la descripcion de un segundo producto creado por PostMan",
-    "id": "2",
-    "timestamp": "2022-11-07T15:34:19.493Z",
-    "codigo": "codigo:2"
-  },
-  {
-    "nombre": "Producto Creado Postman N3",
-    "foto": "www.postman.com.ar/productocreado/test 2",
-    "precio": "850",
-    "stock": "3",
-    "descripcion": "Esta es la descripcion de un segundo producto creado por PostMan",
-    "id": "3",
-    "timestamp": "2022-11-07T15:53:29.672Z",
-    "codigo": "codigo:3"
+    "id": "df20f1a7-e68c-41e3-b5f4-29f25621884b",
+    "timestamp": "2022-11-07T17:34:53.665Z",
+    "codigo": "codigo:df20f1a7-e68c-41e3-b5f4-29f25621884b"
   }
 ]
