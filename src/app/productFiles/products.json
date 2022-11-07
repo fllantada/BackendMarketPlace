@@ -1,14 +1,22 @@
 [
   {
-    "id": "1",
-    "title": "test",
-    "price": 100,
-    "thumbnail": "https://cdn2.iconfinder.com/data/icons/social-media-2189/48/22-Yahoo-512.png"
+    "nombre": "Producto Creado Postman N1",
+    "foto": "www.postman.com.ar/productocreado/test 2",
+    "precio": "850",
+    "stock": "3",
+    "descripcion": "Esta es la descripcion de un segundo producto creado por PostMan",
+    "id": "250347f1-56e3-4bdb-992a-8c9a70151ee6",
+    "timestamp": "2022-11-07T17:34:43.447Z",
+    "codigo": "codigo:250347f1-56e3-4bdb-992a-8c9a70151ee6"
   },
   {
-    "id": "2",
-    "title": "test",
-    "price": 100,
-    "thumbnail": "https://cdn2.iconfinder.com/data/icons/social-media-2189/48/22-Yahoo-512.png"
+    "nombre": "Producto Creado Postman N2",
+    "foto": "www.postman.com.ar/productocreado/test 2",
+    "precio": "850",
+    "stock": "3",
+    "descripcion": "Esta es la descripcion de un segundo producto creado por PostMan",
+    "id": "df20f1a7-e68c-41e3-b5f4-29f25621884b",
+    "timestamp": "2022-11-07T17:34:53.665Z",
+    "codigo": "codigo:df20f1a7-e68c-41e3-b5f4-29f25621884b"
   }
 ]

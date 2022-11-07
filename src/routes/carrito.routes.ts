@@ -1,4 +1,5 @@
 import { Router } from "express";
+import carritoController from "../controllers/CarritoController";
 
 const carrito = Router();
 
@@ -8,9 +9,7 @@ carrito.get("/", (req, res) => {
 carrito.get("/:id", (req, res) => {
   res.send("GEt carrito params");
 });
-carrito.post("/", (req, res) => {
-  res.send("Post carrito");
-});
+carrito.post("/", carritoController.create.bind(carritoController));
 carrito.put("/:id", (req, res) => {
   res.send("put carrito");
 });
