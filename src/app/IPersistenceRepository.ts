@@ -3,7 +3,7 @@ type findedObject = {
 };
 
 export default interface IPersistenceRepository {
-  getAll(): Promise<any[]>;
+  getAll(): any[];
   getById(id: string): Promise<findedObject> | undefined;
   create(item: Object): string;
   edit(id: string, item: Object): Object | boolean;

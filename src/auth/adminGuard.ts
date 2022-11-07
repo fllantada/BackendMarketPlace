@@ -32,9 +32,6 @@ function isProtected(route: string, method: string): boolean {
     "/carrito": ["GET", "POST", "PUT", "DELETE"],
   };
 
-  console.log(protectedRoutes[route]);
-  console.log(route);
-
   if (
     protectedRoutes[route] &&
     Array.isArray(protectedRoutes[route]) &&

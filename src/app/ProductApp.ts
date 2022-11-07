@@ -39,8 +39,8 @@ class ProductApp {
     console.log("products", products);
   }
 
-  async getAll(): Promise<Product[]> {
-    const products = await this.repository.getAll();
+  getAll(): Product[] {
+    const products = this.repository.getAll();
 
     //empty file
 

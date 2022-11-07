@@ -27,7 +27,9 @@ class ProductController {
     const products = ProductApp.getAll();
     products
       .then((products) => {
+        console.log("Por mandar la respuesta al servidor !!!!!");
         res.json(products);
+        return;
       })
       .catch((err) => console.log(err));
   }
@@ -38,6 +40,7 @@ class ProductController {
     const product = ProductApp.getById(id);
     product
       .then((product) => {
+        console.log("Desde el controller id, producto encontrado es", product);
         if (product) {
           res.json({ data: product });
         } else {

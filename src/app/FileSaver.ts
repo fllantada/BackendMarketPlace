@@ -17,25 +17,20 @@ export class FileSaver implements IPersistenceRepository {
     this.createPath(fileName, fileFolder);
     await this.createFolder(fileFolder);
     await this.createFile();
+    this.readFile();
   }
-  async getAll(): Promise<fileSaverObject[]> {
-    console.log("Inicie GET ALL");
-    fs.readFile(this.path, "utf-8")
-      .then((data) => {
-        console.log("Estoy en la primesa del read File");
-        this.data = JSON.parse(data) as fileSaverObject[];
-        return this.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    console.log("Estoy por retornar this.data", this.data);
+  getAll(): fileSaverObject[] {
+    console.log("FileSaver:GetAll:Inicie GET ALL");
+    this.readFile();
     return this.data;
+  }
+  async readFile(): Promise<void> {
+    const data = await fs.readFile(this.path);
+    this.data = JSON.parse(data.toString());
+    console.log("FileSaver:ReadFile:Lei el archivo", this.data);
   }
 
   async getById(id: string): Promise<Object> {
-    console.log("Desde fileSaver, id es", id);
     const data = (await this.getAll()) as fileSaverObject[];
     const findedObject = data.find((item) => item.id === id);
     if (findedObject) {
@@ -72,11 +67,9 @@ export class FileSaver implements IPersistenceRepository {
     //folder exist
     try {
       await fs.access(`${__dirname}/${fileFolder}`);
-      console.log("Existe la carpeta");
     } catch (error) {
       //folder does not exist
       await fs.mkdir(`${__dirname}/${fileFolder}`);
-      console.log("No existe la carpeta");
     }
   }
 }
