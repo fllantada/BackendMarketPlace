@@ -39,18 +39,8 @@ class ProductApp {
     console.log("products", products);
   }
 
-  getAll(): Product[] {
+  async getAll(): Promise<Product[]> {
     const products = this.repository.getAll();
-
-    //empty file
-
-    /* if (!products || products.length === 0) {
-      console.log(
-        "OJO INGRESE A AGREGAR MOCK PRODUCTS por que products es:",
-        products
-      );
-      this.addMockProducts(testProducts);
-    } */
 
     return products;
   }
