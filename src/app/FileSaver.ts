@@ -1,26 +1,22 @@
-import IPersistenceRepository from "./IPersistenceRepository";
+import IPersistenceRepository from "./Interfaces/IPersistenceRepository";
 import * as fs from "fs/promises";
+import { FileSaverObject as fileSaverObject } from "./Interfaces/IFileSaverObject";
 
-type fileSaverObject = {
-  id: string;
-  [key: string]: any;
-};
-
+/*  */
 export class FileSaver implements IPersistenceRepository {
   private path: string;
   private data: fileSaverObject[] = [];
+
   constructor(fileName: string, fileFolder: string) {
-    console.log("Inicio el constructor de fileSaver");
     this.initialize(fileName, fileFolder);
   }
   async initialize(fileName: string, fileFolder: string) {
     this.createPath(fileName, fileFolder);
     await this.createFolder(fileFolder);
     await this.createFile();
-    this.readFile();
+    await this.readFile();
   }
   getAll(): fileSaverObject[] {
-    console.log("FileSaver:GetAll:Inicie GET ALL");
     this.readFile();
     return this.data;
   }
@@ -28,7 +24,9 @@ export class FileSaver implements IPersistenceRepository {
     const data = await fs.readFile(this.path);
     this.data = JSON.parse(data.toString());
   }
-
+  async writeFile() {
+    await fs.writeFile(this.path, JSON.stringify(this.data, null, 2));
+  }
   async getById(id: string): Promise<Object> {
     const data = this.getAll() as fileSaverObject[];
     const findedObject = data.find((item) => item.id === id);
@@ -40,14 +38,31 @@ export class FileSaver implements IPersistenceRepository {
   }
   create(item: fileSaverObject): string {
     this.data.push(item);
-    fs.writeFile(this.path, JSON.stringify(this.data));
+    this.writeFile();
     return "ok";
   }
-  edit(id: string, item: Object): Object | boolean {
-    throw new Error("Method not implemented.");
+  edit(id: string, newItem: Object): Object | boolean {
+    const findedObject = this.data.find((item) => item.id === id);
+
+    if (findedObject) {
+      const index = this.data.indexOf(findedObject);
+      this.data[index] = newItem as fileSaverObject;
+      this.writeFile();
+      return newItem;
+    } else {
+      return false;
+    }
   }
   delete(id: string): boolean {
-    throw new Error("Method not implemented.");
+    const findedObject = this.data.find((item) => item.id === id);
+    if (findedObject) {
+      const index = this.data.indexOf(findedObject);
+      this.data.splice(index, 1);
+      this.writeFile();
+      return true;
+    } else {
+      return false;
+    }
   }
 
   createPath(filename: string, fileFolder: string) {
@@ -56,18 +71,14 @@ export class FileSaver implements IPersistenceRepository {
   async createFile() {
     try {
       await fs.access(this.path);
-      console.log("Existe el archivo");
     } catch (error) {
-      console.log("No existe el archivo");
       fs.writeFile(this.path, JSON.stringify(this.data));
     }
   }
   async createFolder(fileFolder: string) {
-    //folder exist
     try {
       await fs.access(`${__dirname}/${fileFolder}`);
     } catch (error) {
-      //folder does not exist
       await fs.mkdir(`${__dirname}/${fileFolder}`);
     }
   }

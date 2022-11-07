@@ -1,43 +1,11 @@
-import IPersistenceRepository from "./IPersistenceRepository";
+import IPersistenceRepository from "./Interfaces/IPersistenceRepository";
 import { FileSaver } from "./FileSaver";
-import { Product } from "./IProduct";
-
-//Value Object
-
-//test product for check
-
-const testProducts: Product[] = [
-  {
-    id: "1",
-    title: "test",
-    price: 100,
-    thumbnail:
-      "https://cdn2.iconfinder.com/data/icons/social-media-2189/48/22-Yahoo-512.png",
-  },
-  {
-    id: "2",
-    title: "test",
-    price: 100,
-    thumbnail:
-      "https://cdn2.iconfinder.com/data/icons/social-media-2189/48/22-Yahoo-512.png",
-  },
-];
+import { Product } from "./Interfaces/IProduct";
 
 //App
 
 class ProductApp {
-  private repository: IPersistenceRepository;
-
-  constructor(repository: IPersistenceRepository) {
-    this.repository = repository;
-    this.initialize();
-  }
-
-  async initialize(): Promise<void> {
-    const products = await this.repository.getAll();
-
-    console.log("products", products);
-  }
+  constructor(private repository: IPersistenceRepository) {}
 
   async getAll(): Promise<Product[]> {
     const products = this.repository.getAll();
@@ -51,29 +19,38 @@ class ProductApp {
     if (product) {
       return product;
     }
-    console.log("Retornando undefined");
   }
 
-  async create(product: Product): Promise<void> {
-    const products = await this.repository.getAll();
+  create(product: Product): Product {
+    const products = this.repository.getAll();
     product.id = (products.length + 1).toString();
+    product.timestamp = new Date();
+    product.codigo = "codigo:" + product.id;
     this.repository.create(product);
+
+    return product;
   }
 
   async edit(id: string, newProduct: Product): Promise<Product | boolean> {
     const oldProduct = await this.getById(id);
-
-    if (oldProduct) {
-      const product: Product = {
-        title: newProduct.title || oldProduct?.title,
-        price: newProduct.price || oldProduct?.price,
-        thumbnail: newProduct.thumbnail || oldProduct?.thumbnail,
-      };
-
-      return product;
-    } else {
+    if (!oldProduct) {
       return false;
     }
+
+    const product: Product = {
+      id: oldProduct.id,
+      nombre: newProduct.nombre || oldProduct.nombre,
+      foto: newProduct.foto || oldProduct.foto,
+      codigo: oldProduct.codigo,
+      precio: newProduct.precio || oldProduct.precio,
+      stock: newProduct.stock || oldProduct.stock,
+      descripcion: newProduct.descripcion || oldProduct.descripcion,
+      timestamp: oldProduct.timestamp,
+    };
+
+    const savedItem = this.repository.edit(id, product) as Product | boolean;
+
+    return savedItem;
   }
 
   delete(id: string): boolean {

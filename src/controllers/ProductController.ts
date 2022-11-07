@@ -1,23 +1,10 @@
 import { Request, Response } from "express";
 import ProductApp from "../app/ProductApp";
+import { Product } from "../app/Interfaces/IProduct";
 
 //Value Object
 
-type Product = {
-  id?: string;
-  title: string;
-  price: number;
-  thumbnail: string;
-};
-
 //test product for check
-
-const testProduct: Product = {
-  id: "1",
-  title: "test",
-  price: 100,
-  thumbnail: "test",
-};
 
 //App
 
@@ -53,7 +40,13 @@ class ProductController {
   create(req: Request, res: Response): void {
     const product: Product = req.body;
 
-    if (product.title && product.price && product.thumbnail) {
+    if (
+      product.nombre &&
+      product.precio &&
+      product.stock &&
+      product.descripcion &&
+      product.foto
+    ) {
       ProductApp.create(product);
       res.json({ msg: "Producto creado correctamente", data: product });
     } else {
@@ -64,12 +57,16 @@ class ProductController {
   edit(req: Request, res: Response): void {
     const { id } = req.params;
     const newProduct = req.body;
+    console.log("ingrese al controller edit", newProduct);
+
     const product = ProductApp.edit(id, newProduct);
-    if (product) {
-      res.json({ data: product });
-    } else {
-      res.json({ error: "Producto no encontrado" });
-    }
+    product.then((product) => {
+      if (product) {
+        res.json({ msg: "Producto editado correctamente", data: product });
+      } else {
+        res.json({ error: "Producto no encontrado" });
+      }
+    });
   }
 
   delete(req: Request, res: Response): void {
