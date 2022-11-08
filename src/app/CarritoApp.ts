@@ -72,6 +72,10 @@ class CarritoApp {
       return [];
     }
   }
+  async getAll(): Promise<Carrito[]> {
+    const carritos = await this.repository.getAll();
+    return carritos;
+  }
 }
 
 const persistenceRepository: IPersistenceRepository = new FileSaver(

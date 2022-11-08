@@ -44,6 +44,10 @@ class CarritoController {
       res.send({ Error: "Carrito sin Productos" });
     }
   }
+  async getAll(req: Request, res: Response) {
+    const carritos: Carrito[] = await CarritoApp.getAll();
+    res.send(carritos);
+  }
 }
 
 const carritoController = new CarritoController();

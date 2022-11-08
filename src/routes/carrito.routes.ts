@@ -24,6 +24,7 @@ carrito.get(
   carritoController.getProducts.bind(carritoController)
 );
 
+carrito.get("/", carritoController.getAll.bind(carritoController));
 export default carrito;
 
 //get /api/productos
