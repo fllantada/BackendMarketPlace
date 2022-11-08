@@ -28,8 +28,7 @@ export default function adminGuard(
 
 function isProtected(route: string, method: string): boolean {
   const protectedRoutes: protectedRoutesType = {
-    "/productos": ["GET", "POST", "PUT", "DELETE"],
-    "/carrito": ["GET", "POST", "PUT", "DELETE"],
+    "/productos": ["POST", "PUT", "DELETE"],
   };
 
   if (
