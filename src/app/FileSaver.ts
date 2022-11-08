@@ -27,13 +27,13 @@ export class FileSaver implements IPersistenceRepository {
   async writeFile() {
     await fs.writeFile(this.path, JSON.stringify(this.data, null, 2));
   }
-  async getById(id: string): Promise<Object> {
+  async getById(id: string): Promise<fileSaverObject | false> {
     const data = this.getAll() as fileSaverObject[];
     const findedObject = data.find((item) => item.id === id);
     if (findedObject) {
       return findedObject;
     } else {
-      return {};
+      return false;
     }
   }
   create(item: fileSaverObject): string {

@@ -4,7 +4,7 @@ type findedObject = {
 
 export default interface IPersistenceRepository {
   getAll(): any[];
-  getById(id: string): Promise<findedObject> | undefined;
+  getById(id: string): Promise<findedObject | false>;
   create(item: Object): string;
   edit(id: string, item: Object): Object | boolean;
   delete(id: string): boolean;

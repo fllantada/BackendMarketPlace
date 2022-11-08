@@ -2,7 +2,40 @@
   {
     "id": "eb28d41a-d9b3-476e-9abf-35aeb964da59",
     "timpestamp": "2022-11-07T17:33:51.673Z",
-    "productos": []
+    "productos": [
+      {},
+      {},
+      {
+        "nombre": "Producto Creado Postman N1",
+        "foto": "www.postman.com.ar/productocreado/test 2",
+        "precio": "850",
+        "stock": "3",
+        "descripcion": "Esta es la descripcion de un segundo producto creado por PostMan",
+        "id": "250347f1-56e3-4bdb-992a-8c9a70151ee6",
+        "timestamp": "2022-11-07T17:34:43.447Z",
+        "codigo": "codigo:250347f1-56e3-4bdb-992a-8c9a70151ee6"
+      },
+      {
+        "nombre": "Producto Creado Postman N1",
+        "foto": "www.postman.com.ar/productocreado/test 2",
+        "precio": "850",
+        "stock": "3",
+        "descripcion": "Esta es la descripcion de un segundo producto creado por PostMan",
+        "id": "250347f1-56e3-4bdb-992a-8c9a70151ee6",
+        "timestamp": "2022-11-07T17:34:43.447Z",
+        "codigo": "codigo:250347f1-56e3-4bdb-992a-8c9a70151ee6"
+      },
+      {
+        "nombre": "Producto Creado Postman N1",
+        "foto": "www.postman.com.ar/productocreado/test 2",
+        "precio": "850",
+        "stock": "3",
+        "descripcion": "Esta es la descripcion de un segundo producto creado por PostMan",
+        "id": "250347f1-56e3-4bdb-992a-8c9a70151ee6",
+        "timestamp": "2022-11-07T17:34:43.447Z",
+        "codigo": "codigo:250347f1-56e3-4bdb-992a-8c9a70151ee6"
+      }
+    ]
   },
   {
     "id": "17c8252b-da2a-455e-bbec-6ef38acdca70",
@@ -12,6 +45,21 @@
   {
     "id": "dcbaca9e-d173-46fa-804c-28b911c4bb2a",
     "timpestamp": "2022-11-07T17:34:07.221Z",
+    "productos": []
+  },
+  {
+    "id": "499b46cc-3f9f-44bc-9476-32380095af54",
+    "timpestamp": "2022-11-08T15:54:53.183Z",
+    "productos": []
+  },
+  {
+    "id": "1e9b42b5-3341-491a-9970-d8eff22b262d",
+    "timpestamp": "2022-11-08T17:26:16.201Z",
+    "productos": []
+  },
+  {
+    "id": "dbc78dbc-8340-4af3-b722-07a71ba93f1a",
+    "timpestamp": "2022-11-08T18:10:29.288Z",
     "productos": []
   }
 ]
