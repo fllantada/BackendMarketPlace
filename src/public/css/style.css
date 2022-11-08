@@ -27,6 +27,10 @@ a {
 .hidden {
   display: none;
 }
+.link-postman {
+  color: rgb(2, 0, 0);
+  text-decoration: none;
+}
 .login-container {
   display: flex;
   flex-direction: row;
