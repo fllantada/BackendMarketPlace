@@ -9,7 +9,7 @@ class ProductApp {
   constructor(private repository: IPersistenceRepository) {}
 
   async getAll(): Promise<Product[]> {
-    const products = this.repository.getAll();
+    const products = (await this.repository.getAll()) as Product[];
     return products;
   }
 
@@ -52,7 +52,7 @@ class ProductApp {
     return savedItem;
   }
 
-  delete(id: string): boolean {
+  delete(id: string): boolean | Promise<boolean> {
     return this.repository.delete(id);
   }
   async addMockProducts(products: Product[]): Promise<void> {

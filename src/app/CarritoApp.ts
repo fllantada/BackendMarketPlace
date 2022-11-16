@@ -19,7 +19,10 @@ class CarritoApp {
   }
   delete(id: string): { deleted: boolean } {
     const deleted = this.repository.delete(id);
-    return { deleted };
+    if (deleted) {
+      return { deleted: true };
+    }
+    return { deleted: false };
   }
   async addProduct(
     id_carrito: string,
@@ -73,7 +76,7 @@ class CarritoApp {
     }
   }
   async getAll(): Promise<Carrito[]> {
-    const carritos = await this.repository.getAll();
+    const carritos = (await this.repository.getAll()) as Carrito[];
     return carritos;
   }
 }

@@ -18,5 +18,15 @@
     "id": "df20f1a7-e68c-41e3-b5f4-29f25621884b",
     "timestamp": "2022-11-07T17:34:53.665Z",
     "codigo": "codigo:df20f1a7-e68c-41e3-b5f4-29f25621884b"
+  },
+  {
+    "nombre": "Producto Creado Postman n44",
+    "foto": "www.postman.com.ar/productocreado/test",
+    "precio": "1000",
+    "stock": "5",
+    "descripcion": "Esta es la descripcion de un producto creado por PostMan",
+    "id": "9056228e-404d-4ece-b1d9-36ba44b052f1",
+    "timestamp": "2022-11-16T15:04:50.125Z",
+    "codigo": "codigo:9056228e-404d-4ece-b1d9-36ba44b052f1"
   }
 ]
