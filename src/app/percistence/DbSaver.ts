@@ -1,6 +1,6 @@
-import IPersistenceRepository from "./Interfaces/IPersistenceRepository";
+import IPersistenceRepository from "../Interfaces/IPersistenceRepository";
 import knex, { Knex } from "knex";
-import { FileSaverObject } from "./Interfaces/IFileSaverObject";
+import { FileSaverObject } from "../Interfaces/IFileSaverObject";
 
 type KnexConfig = {
   client: string;

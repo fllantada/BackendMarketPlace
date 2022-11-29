@@ -1,6 +1,6 @@
-import IPersistenceRepository from "./Interfaces/IPersistenceRepository";
+import IPersistenceRepository from "../Interfaces/IPersistenceRepository";
 import * as fs from "fs/promises";
-import { FileSaverObject as fileSaverObject } from "./Interfaces/IFileSaverObject";
+import { FileSaverObject as fileSaverObject } from "../Interfaces/IFileSaverObject";
 
 /*  */
 export class FileSaver implements IPersistenceRepository {

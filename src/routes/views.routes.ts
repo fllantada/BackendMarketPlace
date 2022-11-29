@@ -8,6 +8,11 @@ views.get("/", (req, res) => {
   res.render("./pages/homePage.pug", { title: "Home", productos: products });
 });
 
+views.get("/chat", (req, res) => {
+  const products = ProductApp.getAll();
+  res.render("./pages/homePageTp5.pug", { title: "Home", productos: products });
+});
+
 views.get("/productos", (req, res) => {
   const products = ProductApp.getAll();
 
