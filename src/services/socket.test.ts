@@ -1,6 +1,5 @@
 import { SocketClass } from "./socket";
 
-const mockHttpServer = jest.fn();
 const mockPersistenceRepository = jest.fn();
 
 beforeAll(() => {});

@@ -46,6 +46,7 @@ export class SocketClass {
   private connectIoToServer(app: httpServer): void {
     this.io = new ioServer(app, {});
   }
+
   private handleEvents(): void {
     this.io.on("connection", (socket: socketType) => {
       socket.emit("allProducts", productApp.getAll());
@@ -62,6 +63,9 @@ export class SocketClass {
             message: "Bienvenido al chat",
           },
         ]);
+        this.getAllNormalized().then((data) => {
+          socket.emit("allMessages", data);
+        });
       });
       socket.on("sendNewProduct", (data) => {
         productApp.create(data);
@@ -112,7 +116,7 @@ export class SocketClass {
     }
   }
   async getAllNormalized() {
-    const data = this.persistenceRepository.getAll();
+    const data = await this.persistenceRepository.getAll();
     return normalize(data, finalSchema);
   }
 
