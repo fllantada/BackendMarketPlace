@@ -1,5 +1,7 @@
-<h1>TP BAckend Francisco Llantada</h1>
+<h1>Tech used</h1>
 
-Link para acceder al postman:
+run commmand npm run dbUp to start Mongodb for dev test
 
-https://www.getpostman.com/collections/7cb416af6c1c96d70b2a
+run command npm run dev to start app on dev
+
+run command npm run test to test some clases
