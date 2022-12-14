@@ -9,10 +9,12 @@ import carritoRouter from "./carrito.routes";
 const mainRouter = Router();
 
 //check protected Routes
+
 mainRouter.use("/api", adminGuard);
 
 mainRouter.use("/api/productos", productsRouter);
 mainRouter.use("/api/carrito", carritoRouter);
+
 mainRouter.use("/api/login", (req: Request, res: Response) => {
   user.setRoleType("Admin");
   res.send("Listo estas logeado , para deslogearte entra en /api/logout");

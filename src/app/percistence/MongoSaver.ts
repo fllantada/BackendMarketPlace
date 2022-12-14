@@ -12,20 +12,28 @@ export default class MongoSaver implements IPersistenceRepository {
     collectionName: string,
     url: string = "mongodb://localhost:27017"
   ) {
+    console.log(url);
     this.collectionName = collectionName;
     this.client = new mongoDb.MongoClient(url, {});
 
     this.connect();
   }
   async connect() {
+    console.log("Entre en conect de mongo");
     if (this.db) {
+      console.log("Entre en el if de connect de mongo");
       return;
     }
-    await this.client.connect();
-    const dbName = "myproject";
-    this.db = this.client.db(dbName);
-    this.collection = this.db.collection(this.collectionName);
-    console.log(this.collection);
+    try {
+      await this.client.connect();
+
+      const dbName = "myproject";
+      this.db = this.client.db(dbName);
+      this.collection = this.db.collection(this.collectionName);
+      console.log(this.collection);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   disconnect() {
