@@ -21,16 +21,15 @@ export default class MongoSaver implements IPersistenceRepository {
   async connect() {
     console.log("Entre en conect de mongo");
     if (this.db) {
-      console.log("Entre en el if de connect de mongo");
+      console.log("Ya estaba conectado");
       return;
     }
     try {
       await this.client.connect();
+      this.db = this.client.db("MyDataBase");
 
-      const dbName = "myproject";
-      this.db = this.client.db(dbName);
       this.collection = this.db.collection(this.collectionName);
-      console.log(this.collection);
+      console.log();
     } catch (e) {
       console.log(e);
     }

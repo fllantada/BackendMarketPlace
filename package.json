@@ -10,8 +10,8 @@
     "prod": "node ./dist/index.js",
     "test": "jest --watchAll",
     "dev": "nodemon",
-    "dbUp": "docker build -t my-repository:my-tag -f Dockerfile.db . && docker run  -d my-repository:my-tag",
-    "dbDawn": "docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi $(docker images -q)"
+    "dbUp": "docker build -t mongo:fran -f Dockerfile.db . && docker run -d --name contenedordorFran -p 27017:27017 mongo:fran",
+    "clean": "docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi $(docker images -q)"
   },
   "keywords": [],
   "author": "",
