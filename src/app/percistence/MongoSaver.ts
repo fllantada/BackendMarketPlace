@@ -29,7 +29,8 @@ export default class MongoSaver implements IPersistenceRepository {
       this.db = this.client.db("MyDataBase");
 
       this.collection = this.db.collection(this.collectionName);
-      console.log();
+
+      this.getAll().then((items) => console.log(items));
     } catch (e) {
       console.log(e);
     }

@@ -31,6 +31,7 @@ socket.on("loggedUser", (data) => {
 
 //New Message
 socket.on("newMessage", (data) => {
+  console.log("NEw message", data);
   outputMessage(data[data.length - 1]);
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
   window.scrollTo(0, document.body.scrollHeight);
