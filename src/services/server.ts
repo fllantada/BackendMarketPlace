@@ -5,22 +5,14 @@ import path from "path";
 import { createServer } from "http";
 import User from "../auth/isAdmin";
 import session from "express-session";
+import { config } from "src/config/config";
 
-const sessionConfig = session({
-  secret: "secret",
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24,
-    httpOnly: true,
-    secure: false,
-  },
-});
+const sessionFunc = session(config.sessionConfig);
 
 const app: Express = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(sessionConfig);
+app.use(sessionFunc);
 
 //user Status for protected Routes
 
