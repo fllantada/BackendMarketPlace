@@ -2,6 +2,14 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { config } from "../config/config";
 
+type UserInputExpected = { [key: string]: string; id: string };
+
+export const newJwtToken = (user: UserInputExpected) => {
+  return jwt.sign({ id: user.id }, config.jwtSecret, {
+    expiresIn: 60 * 60 * 24 * 30,
+  });
+};
+
 export const authMiddleware = (
   req: Request,
   res: Response,
