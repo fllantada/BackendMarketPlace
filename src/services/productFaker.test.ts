@@ -1,7 +1,5 @@
 import productsFaker from "./productFaker";
 
-const propertyes = ["nombre", "foto", "precio", "stock", "description"];
-
 describe("productsFaker", () => {
   it("should return the correct amount of produts", () => {
     const products = productsFaker(5);
