@@ -5,7 +5,7 @@ import path from "path";
 import { createServer } from "http";
 import User from "../auth/isAdmin";
 import session from "express-session";
-import { config } from "../../src/config/config";
+import config from "../../src/config/config";
 
 const sessionFunc = session(config.sessionConfig);
 

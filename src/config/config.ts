@@ -1,4 +1,4 @@
-export const config = {
+const config = {
   port: process.env.PORT || 3000,
   jwtSecret: process.env.JWT_SECRET || "mysecret",
   sessionConfig: {
@@ -12,3 +12,5 @@ export const config = {
     userId: null,
   },
 };
+
+export default config;
