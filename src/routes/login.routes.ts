@@ -6,11 +6,12 @@ import passport from "passport";
 //register
 
 const loginRouter = Router();
-loginRouter.post("signup", (req: Request, res: Response, next : NextFunction) => {
+loginRouter.post(
+  "signup",
+  (req: Request, res: Response, next: NextFunction) => {}
+);
 
-passport.authenticate("signup", (err, user, info) => {
-
-});
+passport.authenticate("signup", (err, user, info) => {});
 
 loginRouter.post("/login", (req: Request, res: Response) => {
   //obtengo credenciales del bodyuser
