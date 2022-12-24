@@ -28,4 +28,8 @@ views.get("/formulario", (req, res) => {
   });
 });
 
+views.get("/login", (req, res) => {
+  res.render("./pages/loginPage.pug", { title: "Login" });
+});
+
 export default views;

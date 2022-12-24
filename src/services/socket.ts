@@ -49,13 +49,6 @@ export class SocketClass {
 
   private handleEvents(): void {
     this.io.on("connection", (socket: socketType) => {
-      const products = productApp.getAll();
-      products.then((data) => {
-        console.log("data es:", data);
-        socket.emit("allProducts", data);
-      });
-      console.log("PRoducts desde el socket es: ", products);
-
       socket.on("login", (data) => {
         const author = this.createAuthor(data);
 

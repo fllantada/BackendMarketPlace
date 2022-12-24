@@ -7,11 +7,11 @@ import User from "../auth/isAdmin";
 import session from "express-session";
 import config from "../../src/config/config";
 
-const sessionFunc = session(config.sessionConfig);
-
 const app: Express = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+//sessionConfig
+const sessionFunc = session(config.sessionConfig);
 app.use(sessionFunc);
 
 //user Status for protected Routes
