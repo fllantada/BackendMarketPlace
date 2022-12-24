@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const config = {
+export default {
   port: process.env.PORT || 3000,
   jwtSecret: process.env.JWT_SECRET || "mysecret",
   sessionConfig: {
@@ -16,5 +16,3 @@ const config = {
     userId: null,
   },
 };
-
-export default config;

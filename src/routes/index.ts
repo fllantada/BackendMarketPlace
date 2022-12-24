@@ -3,7 +3,6 @@ import productsRouter from "./products.routes";
 import viewsRouter from "./views.routes";
 import loginRouter from "./login.routes";
 import { Request, Response } from "express";
-
 import carritoRouter from "./carrito.routes";
 
 const mainRouter = Router();

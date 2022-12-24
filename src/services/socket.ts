@@ -39,6 +39,7 @@ export class SocketClass {
     app: httpServer,
     private persistenceRepository: IPersistenceRepository
   ) {
+    console.log("SocketClass constructor");
     this.connectIoToServer(app);
     this.handleEvents();
   }
@@ -50,6 +51,7 @@ export class SocketClass {
   private handleEvents(): void {
     this.io.on("connection", (socket: socketType) => {
       socket.on("login", (data) => {
+        console.log("Ingrese a socket on login con data en ", data);
         const author = this.createAuthor(data);
 
         this.authors.push(author);
@@ -74,10 +76,13 @@ export class SocketClass {
       });
 
       socket.on("chatMessage", (data: string) => {
+        console.log("Ingreso un mensaje");
         const message = this.createMessage(socket.id, data);
         if (!message) return;
         this.messages.push(message);
+        console.log(this.messages);
         this.persistenceRepository.create(message);
+        console.log("cree el mensaje", this.messages);
         this.io.emit("newMessage", this.messages);
       });
 
@@ -100,6 +105,7 @@ export class SocketClass {
   }
 
   createMessage(socketId: string, data: string): Message | undefined {
+    console.log("ingrese en create mesage");
     const user: Author | undefined = this.authors.find(
       (user) => user.id === socketId
     );

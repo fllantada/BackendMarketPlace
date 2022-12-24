@@ -1,7 +1,10 @@
 //Socket Conection
 const socket = io();
+console.log("Ejecutando chat.js");
 socket.connect("http://localhost:8080", { reconnect: true });
-socket.on("connection", function () {});
+socket.on("connection", function () {
+  console.log("conectado");
+});
 //get DOM elements
 const loginInputForm = document.getElementById("login");
 const mail = document.getElementById("mail");
@@ -15,13 +18,19 @@ const msg = document.getElementById("msg");
 chatContainer.classList.add("hidden");
 
 //login
-loginInputForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const username = mail.value;
 
-  socket.emit("login", mail.value);
-  mail.value = "";
-});
+//get userDAta from cookie
+let userData = {};
+
+if (document.cookie && false) {
+  console.log(document.cookie);
+  const cookie = document.cookie.split("=");
+  userData.email = cookie[1];
+  socket.emit("login", userData.email);
+} else
+  userData.email = `franciscollantada@gmail.com${Math.random(2).toString()}`;
+
+socket.emit("login", userData.email);
 
 //logged in User
 socket.on("loggedUser", (data) => {
