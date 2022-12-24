@@ -3,9 +3,12 @@ import { Express, Request, Response } from "express";
 import mainRouter from "../routes";
 import path from "path";
 import { createServer } from "http";
-import User from "../auth/isAdmin";
+import { loginFunc, signUpFunc } from "../auth/passport";
 import session from "express-session";
 import config from "../../src/config/config";
+import passport from "passport";
+
+console.log(passport);
 
 const app: Express = express();
 app.use(express.json());
@@ -14,9 +17,13 @@ app.use(express.urlencoded({ extended: true }));
 const sessionFunc = session(config.sessionConfig);
 app.use(sessionFunc);
 
-//user Status for protected Routes
+//passport
+app.use(passport.initialize());
+app.use(passport.session());
 
-User.setRoleType("User");
+//passport config
+
+//user Status for protected Routes
 
 // Static files
 

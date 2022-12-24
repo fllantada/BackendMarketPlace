@@ -1,10 +1,16 @@
 //login
-import { Router, Request, Response } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import { Guard } from "../auth/Guard";
+import passport from "passport";
 
 //register
 
 const loginRouter = Router();
+loginRouter.post("signup", (req: Request, res: Response, next : NextFunction) => {
+
+passport.authenticate("signup", (err, user, info) => {
+
+});
 
 loginRouter.post("/login", (req: Request, res: Response) => {
   //obtengo credenciales del bodyuser
@@ -34,6 +40,8 @@ loginRouter.post("/register", (req: Request, res: Response) => {
 
   //verifico si ya existe el usuario
   //si no existe lo creo
+  //if userManager.exists(credentials.user) {
+  //userManager.create(credentials);
 
   //si existe retorno error
 });
