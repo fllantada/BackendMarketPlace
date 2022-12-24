@@ -3,6 +3,6 @@ FROM mongo:latest
 EXPOSE 27017
 RUN mkdir -p /data/db
 RUN ls
-VOLUME ./data/db
+VOLUME ./data/db /data/db
 
 CMD ["mongod", "--bind_ip_all"]
